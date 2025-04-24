@@ -10,11 +10,39 @@ Auto-inferred schema from sample documents
 Optional verbose logging for debugging
 Extendable for aggregation and custom operations
 
+
 # How to install
 ```
 pip install MongoAgent
 ```
 # How to use?
+## Create .env file 
+```
+MONGO_URL=
+OPENAI_TOKEN=sk-proj-dDcOQpsHf-A3Iatu...
+DB_NAME=
+```
+
+## Create new Doocument
+```
+from MongoAgent import MongoAgent
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+mongo_url = os.getenv("MONGO_URL")
+openai_token = os.getenv("OPENAI_TOKEN")
+db_name = os.getenv("DB_NAME")
+
+agent = MongoAgent(mongoURL=mongo_url, openAI_token=openai_token, db_name=db_name)
+
+ai_query = agent.execute(prompt="Create new MongoDB collection called 'test' with a field called 'name' and insert a document with name 'test_name'")
+print("\n🤖 AI Response:\n", ai_query)
+
+result = agent.execute_from_ai_query(ai_query)
+print(result)
+```
 
 ## Add new entry 
 ```
@@ -52,6 +80,7 @@ db_name = os.getenv("DB_NAME")
 agent = MongoAgent(mongoURL=mongo_url, openAI_token=openai_token, db_name=db_name)
 
 ai_query = agent.execute(prompt="list all the data in the database name start wihth 'jig'")
+
 print("\n🤖 AI Response:\n", ai_query)
 result = agent.execute_from_ai_query(ai_query)
 print(result)
