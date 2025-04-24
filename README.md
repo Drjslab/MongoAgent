@@ -14,28 +14,9 @@ Extendable for aggregation and custom operations
 ```
 pip install MongoAgent
 ```
-## How to use?
+# How to use?
 
-# list where conditions 
-```
-from MongoAgent import MongoAgent
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-
-mongo_url = os.getenv("MONGO_URL")
-openai_token = os.getenv("OPENAI_TOKEN")
-db_name = os.getenv("DB_NAME")
-
-agent = MongoAgent(mongoURL=mongo_url, openAI_token=openai_token, db_name=db_name)
-
-ai_query = agent.execute(prompt="list all the data in the database name start wihth 'jig'")
-print("\n🤖 AI Response:\n", ai_query)
-result = agent.execute_from_ai_query(ai_query)
-print(result)
-```
-# Add new entry 
+## Add new entry 
 ```
 from MongoAgent import MongoAgent
 from dotenv import load_dotenv
@@ -51,6 +32,27 @@ agent = MongoAgent(mongoURL=mongo_url, openAI_token=openai_token, db_name=db_nam
 ai_query = agent.execute(prompt="Add name jignesh in the database")
 print("\n🤖 AI Response:\n", ai_query)
 
+result = agent.execute_from_ai_query(ai_query)
+print(result)
+```
+
+
+## list where conditions 
+```
+from MongoAgent import MongoAgent
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
+
+mongo_url = os.getenv("MONGO_URL")
+openai_token = os.getenv("OPENAI_TOKEN")
+db_name = os.getenv("DB_NAME")
+
+agent = MongoAgent(mongoURL=mongo_url, openAI_token=openai_token, db_name=db_name)
+
+ai_query = agent.execute(prompt="list all the data in the database name start wihth 'jig'")
+print("\n🤖 AI Response:\n", ai_query)
 result = agent.execute_from_ai_query(ai_query)
 print(result)
 ```
