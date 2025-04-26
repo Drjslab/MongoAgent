@@ -1,4 +1,4 @@
-![Downloads](https://static.pepy.tech/badge/MongoAgent)
+[![PyPI Downloads](https://static.pepy.tech/badge/mongoagent)](https://pepy.tech/projects/mongoagent)
 
 # MongoAgent
 MongoAgent is an AI-powered assistant that helps generate and execute MongoDB queries using OpenAI. It supports intelligent querying, CRUD operations, collection/documentation exploration, and metadata generation.
