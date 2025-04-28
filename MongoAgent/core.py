@@ -15,7 +15,7 @@ class MongoAgent:
         """
         Initialize MongoAgent with MongoDB and OpenAI API clients.
         """
-        self.mongoURL = mongoURL or "mongodb://admin:TonY%24ta7k@192.168.101.4:27017/"
+        self.mongoURL = mongoURL
         self.openAI_token = openAI_token or os.getenv("OPENAI_API_KEY")
         self.client = MongoClient(self.mongoURL)
         self.AIclient = OpenAI(api_key=self.openAI_token)

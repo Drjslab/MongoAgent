@@ -4,7 +4,7 @@ with open("README.md", "r") as f:
 
 setup(
     name='MongoAgent',
-    version='0.1.1',
+    version='0.1.2',
     author='Drjslab',
     description='An Applicaiton help to communicate with mongo using chatgpt and AI',
     long_description=long_description,
