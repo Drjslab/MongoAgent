@@ -1,90 +1,29 @@
-[![PyPI Downloads](https://static.pepy.tech/badge/mongoagent)](https://pepy.tech/projects/mongoagent)
+# MongoAgent 🧠🔍
 
-# MongoAgent
-MongoAgent is an AI-powered assistant that helps generate and execute MongoDB queries using OpenAI. It supports intelligent querying, CRUD operations, collection/documentation exploration, and metadata generation.
+**MongoAgent** is an AI-powered assistant that helps generate and execute MongoDB queries using OpenAI. It supports intelligent querying, CRUD operations, collection/documentation exploration, and metadata generation.
 
-# Features
-Connect to MongoDB
-Auto-generate queries using OpenAI (GPT-3.5)
-CRUD operations on collections and documents
-Smart prompt handling for listing collections
-Auto-inferred schema from sample documents
-Optional verbose logging for debugging
-Extendable for aggregation and custom operations
+## ✨ Features
 
+- Connect to MongoDB
+- Auto-generate queries using OpenAI (GPT-3.5)
+- CRUD operations on collections and documents
+- Smart prompt handling for listing collections
+- Auto-inferred schema from sample documents
+- Optional verbose logging for debugging
+- Extendable for aggregation and custom operations
 
-# How to install
+## How to install
+
 ```
 pip install MongoAgent
 ```
-# How to use?
-## Create .env file 
+## How to use?
 ```
-MONGO_URL=
-OPENAI_TOKEN=sk-proj-dDcOQpsHf-A3Iatu...
-DB_NAME=
-```
+from  MongoAgent import MongoAgent
 
-## Create new Doocument
-```
-from MongoAgent import MongoAgent
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-
-mongo_url = os.getenv("MONGO_URL")
-openai_token = os.getenv("OPENAI_TOKEN")
-db_name = os.getenv("DB_NAME")
-
-agent = MongoAgent(mongoURL=mongo_url, openAI_token=openai_token, db_name=db_name)
-
-ai_query = agent.execute(prompt="Create new MongoDB collection called 'test' with a field called 'name' and insert a document with name 'test_name'")
-print("\n🤖 AI Response:\n", ai_query)
-
-result = agent.execute_from_ai_query(ai_query)
-print(result)
-```
-
-## Add new entry 
-```
-from MongoAgent import MongoAgent
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-
-mongo_url = os.getenv("MONGO_URL")
-openai_token = os.getenv("OPENAI_TOKEN")
-db_name = os.getenv("DB_NAME")
-
-agent = MongoAgent(mongoURL=mongo_url, openAI_token=openai_token, db_name=db_name)
-ai_query = agent.execute(prompt="Add name jignesh in the database")
-print("\n🤖 AI Response:\n", ai_query)
-
-result = agent.execute_from_ai_query(ai_query)
-print(result)
-```
-
-
-## list where conditions 
-```
-from MongoAgent import MongoAgent
-from dotenv import load_dotenv
-import os
-
-load_dotenv()
-
-mongo_url = os.getenv("MONGO_URL")
-openai_token = os.getenv("OPENAI_TOKEN")
-db_name = os.getenv("DB_NAME")
-
-agent = MongoAgent(mongoURL=mongo_url, openAI_token=openai_token, db_name=db_name)
-
-ai_query = agent.execute(prompt="list all the data in the database name start wihth 'jig'")
-
+agent = MongoAgent(mongoURL=..., openAI_token=..., db_name=...)
+ai_query = agent.execute(prompt="show last 3 entries in logs table")
 print("\n🤖 AI Response:\n", ai_query)
 result = agent.execute_from_ai_query(ai_query)
 print(result)
 ```
-
