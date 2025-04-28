@@ -4,7 +4,7 @@ from pymongo import MongoClient
 from openai import OpenAI
 from dotenv import load_dotenv
 from bson.json_util import dumps  # Add this at the top of your script
-
+from datetime import datetime
 
 # core.py
 
@@ -20,6 +20,7 @@ class MongoAgent:
         self.client = MongoClient(self.mongoURL)
         self.AIclient = OpenAI(api_key=self.openAI_token)
         self.db_name = db_name
+        self.now = datetime.now()
 
     def close_connection(self):
         """Close the MongoDB connection."""
@@ -65,10 +66,15 @@ class MongoAgent:
         """
         system_prompt = (
             "You are an AI assistant for MongoDB query generation. "
-            "Respond only with a JSON object having keys:\n\n"
+            "Respond only with a JSON object having the following keys:\n\n"
             "db_name, collection_name, operation, query (optional), data (optional), update (optional), many (optional)\n\n"
-            f"Metadata:\n{metadata}"
+            "Important:\n"
+            "- JSON must be strictly valid (no functions like ISODate()).\n"
+            "- Dates must be represented as ISO 8601 strings, e.g., '2022-10-01T00:00:00.000Z'.\n"
+            "- Do not wrap date strings with ISODate() or any function.\n\n"
+            f"Metadata:\n{metadata}, Note : Today date is {self.now.strftime('%Y-%m-%d')}\n\n"
         )
+
 
         messages = [
             {"role": "system", "content": system_prompt},
